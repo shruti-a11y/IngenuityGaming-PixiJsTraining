@@ -44,26 +44,18 @@ const game = new PIXI.Application({
     game.loader.onProgress.add(preload);
     game.loader.add(list).load(onLoadComplete);
   }
+  
   //----------------------------------
   function start(loader, resources) {
-      //console.log('params ', arguments);
-    //  const back = PIXI.Sprite.from(resources['back'].texture);
-     // back.scale.set(0.2);
-     // game.stage.addChild(back);
+
       const smily = new PIXI.Texture(resources['front'].texture);
-      //new PIXI.Rectangle(0,0,150,150));
+
       const front = PIXI.Sprite.from(smily);
        front.scale.set(1.8);
        front.x=150;
       front.y=20;
       game.stage.addChild(front);
-  
-      
-     //var sprite = PIXI.Sprite.fromImage('');
-    // sprite.position.x = 100;
-    // sprite.position.y = 100;
-    // stage.addChi
-        
+          
       var text = new PIXI.Text('Welcome To our Game',
       {
         font : '50px Arial',
