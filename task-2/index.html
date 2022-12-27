@@ -1,0 +1,86 @@
+<!-- Create a Button, On-clicking the
+Button, show a Menu Screen and Menu Screen should have close button, which will
+redirect to previous screen. -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../pixiTask/js/pixi.min.js"></script>
+    <style>
+      h2 {
+        position: absolute;
+        z-index: 2;
+        bottom: 43%;
+        right: 40%;
+      }
+      #menu {
+        position: absolute;
+        top: 20%;
+        z-index: 100;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 id="heading">Click me</h2>
+    <img id="menu" src="./images/menu.png" alt="" srcset="" />
+    <script>
+      let heading = document.getElementById("heading");
+      let menu = document.getElementById("menu");
+      let app;
+      let bunny;
+      let isDown = true;
+      window.onload = function () {
+        app = new PIXI.Application({
+          width: window.innerWidth,
+          height: window.innerHeight,
+          backgroundColor: 0xaaaaaa,
+        });
+        document.body.appendChild(app.view);
+
+        // const textureButton = PIXI.Texture.from("images/button.png");
+        // const textureButtonDown = PIXI.Texture.from("images/menu.png");
+
+        const button = PIXI.Sprite.from("images/button.png");
+        const closeButton = PIXI.Sprite.from("images/closebutton.png");
+        button.anchor.set(0.5);
+        closeButton.anchor.set(0.5);
+        closeButton.scale.set(0.2);
+        closeButton.zindex = 9999999;
+
+        button.x = app.screen.width / 2;
+        button.y = app.screen.height / 2;
+        closeButton.x = 500;
+        closeButton.y = 110;
+
+        // make the button interactive...
+        button.interactive = true;
+        button.cursor = "pointer";
+        closeButton.interactive = true;
+        closeButton.cursor = "pointer";
+
+        button.on("pointerdown", onClick);
+        closeButton.on("pointerdown", oncloseClick);
+
+        app.stage.addChild(button);
+        app.stage.addChild(closeButton);
+        closeButton.visible = false;
+
+        function onClick() {
+          console.log("press");
+          closeButton.visible = true;
+          menu.style.display = " block";
+        }
+        function oncloseClick() {
+          console.log(" closed press");
+          menu.style.display = "none";
+          closeButton.visible = false;
+        }
+      };
+    </script>
+  </body>
+</html>
