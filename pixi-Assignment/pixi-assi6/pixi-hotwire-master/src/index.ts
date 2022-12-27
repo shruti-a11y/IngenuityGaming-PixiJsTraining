@@ -7,8 +7,8 @@ const app = new Application({
 	resolution: window.devicePixelRatio || 1,
 	autoDensity: true,
 	backgroundColor: 0x6495ed,
-	width: 640,
-	height: 480
+	width: window.innerWidth,
+	height: window.innerHeight
 });
 const conty: Container = new Container();
 conty.x = 200;
@@ -16,8 +16,8 @@ conty.y = 0;
 app.stage.addChild(conty);
 
 const clampy: Sprite = Sprite.from("button.png");
-clampy.x =0;
-clampy.y = 100;
+clampy.x =conty.width+200;
+clampy.y = conty.height;
 conty.addChild(clampy);
 
 clampy.interactive = true;
